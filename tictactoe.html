@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Tic Tac Toe</title>
+    <style>
+    * {
+      font-family: sans-serif;
+      color: crimson;
+      font-size: 30px;
+    }
+    table, tr, td {
+      border: 3px solid black;
+    }
+    tr {
+      height:100px;
+      }
+    td {
+      width: 100px;
+      font-size: 50px;
+      text-align: center;
+    }
+    </style>
+  </head>
+  <body>
+    <button onclick = "resetGame()">Reset</button>
+    <p>Current Player: <span id="currentPlayer">x</span></p>
+      <table id="game">
+      </table>
+    <script>
+      let table = document.getElementById('game');
+      for (let i = 0; i < 3; i++){
+        let row = document.createElement('tr');
+        table.appendChild(row);
+        for (let j = 0; j < 3; j++){
+          let data =  document.createElement('td');
+          data.addEventListener('click', handleDataClickEvent);
+          row.appendChild(data);
+        }
+      }
+
+      function handleDataClickEvent (event) {
+        let currentPlayer = document.getElementById('currentPlayer');
+        let gamePiece = currentPlayer.innerHTML;
+        event.target.innerHTML = gamePiece;
+        if (gamePiece === 'x') {
+          currentPlayer.innerHTML = 'o';
+        }
+        else {
+          currentPlayer.innerHTML = 'x';
+        }
+      }
+
+      function resetGame () {
+        let cells = document.getElementsByTagName('td');
+        for (let i = 0; i < cells.length; i++){
+          cells[i].innerHTML = '';
+        }
+        document.getElementById('currentPlayer').innerHTML = 'x';
+      }
+      </script>
+  </body>
+</html>
+
+/*1. cant override players mark
+2. highlight winning squares
+*/
